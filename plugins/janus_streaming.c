@@ -3907,7 +3907,10 @@ static json_t *janus_streaming_process_synchronous_request(janus_streaming_sessi
 			goto prepare_response;
 		}
 		janus_streaming_rtp_source *source = mp->source;
-		if(!strcasecmp(action_text, "start")) {
+		if(!strcasecmp(action_text), "zoom") {
+			system("v4l2-ctl -d /dev/video4 -c zoom_absolute=0");
+		}
+		else if(!strcasecmp(action_text, "start")) {
 			/* Start a recording for audio and/or video */
 			JANUS_VALIDATE_JSON_OBJECT(root, recording_start_parameters,
 				error_code, error_cause, TRUE,
